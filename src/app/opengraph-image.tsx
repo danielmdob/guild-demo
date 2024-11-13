@@ -8,21 +8,30 @@ export const size = {
   height: 630,
 }
 
+export const alt = 'About Acme'
 export const contentType = 'image/png'
 
 // Image generation
 export default async function Image() {
   // Font
-  const interSemiBold = fetch(
+  const font = fetch(
     new URL('./fonts/GeistVF.woff', import.meta.url)
   ).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
     (
       // ImageResponse JSX element
-      <h1 className="font-bold text-3xl">
+      <div style={{
+        fontSize: 128,
+        background: 'white',
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
         Hello Full Stack Guild!
-      </h1>
+      </div>
     ),
     // ImageResponse options
     {
@@ -31,8 +40,8 @@ export default async function Image() {
       ...size,
       fonts: [
         {
-          name: 'Inter',
-          data: await interSemiBold,
+          name: 'GeistVF',
+          data: await font,
           style: 'normal',
           weight: 400,
         },
